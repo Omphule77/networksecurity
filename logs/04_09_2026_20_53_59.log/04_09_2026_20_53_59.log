@@ -1,0 +1,20 @@
+[2026-04-09 20:54:01,676] 13 root - INFO - Starting data ingestion
+[2026-04-09 20:54:04,606] 66 root - INFO - Train test split done
+[2026-04-09 20:54:04,607] 67 root - INFO - Exited split_data_as_train_test method of DataIngestion class
+[2026-04-09 20:54:04,608] 71 root - INFO - Exporting train and test files
+[2026-04-09 20:54:04,653] 74 root - INFO - Exported train and test files
+[2026-04-09 20:54:04,654] 15 root - INFO - Data ingestion completed
+[2026-04-09 20:54:04,660] 19 root - INFO - Starting data validation
+[2026-04-09 20:54:04,726] 32 root - INFO - Expected number of columns: 2
+[2026-04-09 20:54:04,726] 33 root - INFO - Actual number of columns: 31
+[2026-04-09 20:54:04,726] 32 root - INFO - Expected number of columns: 2
+[2026-04-09 20:54:04,726] 33 root - INFO - Actual number of columns: 31
+[2026-04-09 20:54:04,820] 63 root - INFO - Drift report saved to artifact\04_09_2026_20_53_59\data_validation\drift_report\report.yaml
+[2026-04-09 20:54:04,866] 21 root - INFO - Data validation completed
+[2026-04-09 20:54:04,866] 25 root - INFO - Starting data transformation
+[2026-04-09 20:54:04,866] 40 root - INFO - Enter the initiate_data_transformation method of DataTransformation class
+[2026-04-09 20:54:04,866] 42 root - INFO - Starting data transformation
+[2026-04-09 20:54:04,958] 41 root - INFO - Enter the save object method of utils
+[2026-04-09 20:54:04,963] 46 root - INFO - Exit the save object method of utils
+[2026-04-09 20:54:04,963] 75 root - INFO - Data transformation completed
+[2026-04-09 20:54:04,964] 27 root - INFO - Data transformation completed

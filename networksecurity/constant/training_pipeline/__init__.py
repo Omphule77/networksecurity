@@ -18,6 +18,9 @@ FILE_NAME="phisingData.csv"
 TRAIN_FILE_NAME="train.csv"
 TEST_FILE_NAME="test.csv"
 
+SAVED_MODEL_DIR="saved_models"
+MODEL_FILE_NAME="model.pkl"
+
 SCHEMA_FILE_PATH=os.path.join("data_schema","schema.yaml")
 
 """
@@ -58,3 +61,14 @@ DATA_TRANSFORMATION_IMPUTER_PARAMS:dict={
 }
 
 PREPROCESSING_OBJECT_FILE_NAME="preprocessor.pkl"
+
+
+"""
+Model trainer related constants start with MODEL_TRAINER Var name
+"""
+
+MODEL_TRAINER_DIR_NAME="model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR="trained_model"
+MODEL_TRAINER_TRAINED_MODEL_NAME="model.pkl"
+MODEL_TRAINER_EXPECTED_SCORE:float =0.6
+MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD:float =0.05

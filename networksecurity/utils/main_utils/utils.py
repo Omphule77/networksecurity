@@ -9,6 +9,9 @@ import pickle
 import os
 import sys
 
+from sklearn.metrics import f1_score
+from sklearn.model_selection import GridSearchCV
+
 def read_yaml_file(file_path:str)->dict:
     try:
         with open(file_path,"r") as yaml_file:
@@ -60,5 +63,34 @@ def load_numpy_array_data(file_path:str)->np.array:
     try:
         with open(file_path,"rb") as file_obj:
             return np.load(file_obj)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys) from e
+
+def evaluate_model(x_train,y_train,x_test,y_test,models,params):
+    try:
+        report={}
+
+        for model_name, model in models.items():
+            
+            param = params[model_name]
+            gs = GridSearchCV(model,param,cv=3)
+            gs.fit(x_train,y_train)
+            
+            
+            model.set_params(**gs.best_params_)
+            model.fit(x_train,y_train)
+
+            y_train_pred=model.predict(x_train)
+            y_test_pred=model.predict(x_test)
+
+            train_model_score=f1_score(y_train,y_train_pred)
+            test_model_score=f1_score(y_test,y_test_pred)
+
+            report[model_name]=test_model_score
+
+        return report
+
+
+            
     except Exception as e:
         raise NetworkSecurityException(e,sys) from e

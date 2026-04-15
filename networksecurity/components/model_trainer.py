@@ -23,6 +23,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import f1_score
 
+import dagshub
+dagshub.init(repo_owner='Omphule77', repo_name='networksecurity', mlflow=True)
+
 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainerConfig, data_transformation_artifact:DataTransformationArtifact):
@@ -34,10 +37,6 @@ class ModelTrainer:
 
     def track_mlflow(self,best_model,classificationmatric):
         try:
-            # Point MLflow to the running tracking server instead of the raw sqlite DB to handle artifacts correctly
-            mlflow.set_tracking_uri("http://127.0.0.1:5000")
-            mlflow.set_registry_uri("http://127.0.0.1:5000")
-            
             with mlflow.start_run():
                 f1_score=classificationmatric.f1_score
                 precision_score=classificationmatric.precision
@@ -116,6 +115,8 @@ class ModelTrainer:
             
             network_model=NetworkModel(preprocessor=preprocessor,model=best_model)
             save_object(self.model_trainer_config.trained_model_file_path,network_model)
+
+            save_object("final_model/model.pkl",best_model)
 
             ## Model trainer Artifact
             model_trainer_artifact=ModelTrainerArtifact(

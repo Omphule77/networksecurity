@@ -1,0 +1,36 @@
+[2026-04-15 22:12:01,552] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-04-15 22:12:01,566] 107 dagshub - INFO - Accessing as Omphule77
+[2026-04-15 22:12:02,524] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Omphule77/networksecurity "HTTP/1.1 200 OK"
+[2026-04-15 22:12:03,460] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-04-15 22:12:03,462] 107 dagshub - INFO - Initialized MLflow to track repo "Omphule77/networksecurity"
+[2026-04-15 22:12:03,463] 107 dagshub - INFO - Repository Omphule77/networksecurity initialized!
+[2026-04-15 22:12:03,463] 14 root - INFO - Starting data ingestion
+[2026-04-15 22:12:07,201] 72 root - INFO - Train test split done
+[2026-04-15 22:12:07,202] 73 root - INFO - Exited split_data_as_train_test method of DataIngestion class
+[2026-04-15 22:12:07,202] 77 root - INFO - Exporting train and test files
+[2026-04-15 22:12:07,243] 80 root - INFO - Exported train and test files
+[2026-04-15 22:12:07,244] 16 root - INFO - Data ingestion completed
+[2026-04-15 22:12:07,248] 20 root - INFO - Starting data validation
+[2026-04-15 22:12:07,300] 32 root - INFO - Expected number of columns: 2
+[2026-04-15 22:12:07,300] 33 root - INFO - Actual number of columns: 31
+[2026-04-15 22:12:07,300] 32 root - INFO - Expected number of columns: 2
+[2026-04-15 22:12:07,300] 33 root - INFO - Actual number of columns: 31
+[2026-04-15 22:12:07,390] 63 root - INFO - Drift report saved to artifact\04_15_2026_22_11_57\data_validation\drift_report\report.yaml
+[2026-04-15 22:12:07,432] 22 root - INFO - Data validation completed
+[2026-04-15 22:12:07,432] 26 root - INFO - Starting data transformation
+[2026-04-15 22:12:07,432] 40 root - INFO - Enter the initiate_data_transformation method of DataTransformation class
+[2026-04-15 22:12:07,432] 42 root - INFO - Starting data transformation
+[2026-04-15 22:12:07,491] 44 root - INFO - Enter the save object method of utils
+[2026-04-15 22:12:07,494] 49 root - INFO - Exit the save object method of utils
+[2026-04-15 22:12:07,494] 44 root - INFO - Enter the save object method of utils
+[2026-04-15 22:12:07,497] 49 root - INFO - Exit the save object method of utils
+[2026-04-15 22:12:07,497] 76 root - INFO - Data transformation completed
+[2026-04-15 22:12:07,498] 28 root - INFO - Data transformation completed
+[2026-04-15 22:12:07,498] 32 root - INFO - Starting model training
+[2026-04-15 22:13:08,478] 86 root - INFO - Model report generated successfully
+[2026-04-15 22:14:20,197] 44 root - INFO - Enter the save object method of utils
+[2026-04-15 22:14:20,235] 49 root - INFO - Exit the save object method of utils
+[2026-04-15 22:14:20,235] 44 root - INFO - Enter the save object method of utils
+[2026-04-15 22:14:20,274] 49 root - INFO - Exit the save object method of utils
+[2026-04-15 22:14:20,274] 127 root - INFO - Model trainer artifact: ModelTrainerArtifact(trained_model_file_path='artifact\\04_15_2026_22_11_57\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9914582062233069, precision=0.9892451298701299, recall=0.993681206685691), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9731225296442688, precision=0.962470680218921, recall=0.9840127897681854))
+[2026-04-15 22:14:20,278] 34 root - INFO - Model training completed

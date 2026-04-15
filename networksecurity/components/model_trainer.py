@@ -1,5 +1,6 @@
 import os
 import sys
+import mlflow
 
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
@@ -31,6 +32,25 @@ class ModelTrainer:
         except Exception as e:
             raise NetworkSecurityException(e,sys) from e
 
+    def track_mlflow(self,best_model,classificationmatric):
+        try:
+            # Point MLflow to the running tracking server instead of the raw sqlite DB to handle artifacts correctly
+            mlflow.set_tracking_uri("http://127.0.0.1:5000")
+            mlflow.set_registry_uri("http://127.0.0.1:5000")
+            
+            with mlflow.start_run():
+                f1_score=classificationmatric.f1_score
+                precision_score=classificationmatric.precision
+                recall_score=classificationmatric.recall
+                
+                mlflow.log_metric("f1_score",f1_score)
+                mlflow.log_metric("precision_score",precision_score)
+                mlflow.log_metric("recall_score",recall_score)
+                # Register the model to MLflow Model Registry
+                mlflow.sklearn.log_model(best_model,"model", registered_model_name="NetworkModel")
+        except Exception as e:
+            raise NetworkSecurityException(e,sys) from e
+    
     def train_model(self,x_train,y_train,x_test,y_test):
         try:
             model={
@@ -79,10 +99,17 @@ class ModelTrainer:
             y_train_predict=best_model.predict(x_train)
             classification_train_matric=get_classification_score(y_train,y_train_predict)
 
+
+            ## To track train experiments with mlflow
+            self.track_mlflow(best_model,classification_train_matric)
+            
             ## To get test metrics
             y_test_predict=best_model.predict(x_test)
             classification_test_matric=get_classification_score(y_test,y_test_predict)
 
+            ## To track test experiments with mlflow
+            self.track_mlflow(best_model,classification_test_matric)
+            
             preprocessor=load_object(self.data_transformation_artifact.transformed_object_file_path)
             model_dir_path=os.path.dirname(self.model_trainer_config.trained_model_file_path)
             os.makedirs(model_dir_path,exist_ok=True)

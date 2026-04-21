@@ -1,0 +1,36 @@
+[2026-04-21 20:39:30,955] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-04-21 20:39:30,963] 107 dagshub - INFO - Accessing as Omphule77
+[2026-04-21 20:39:31,369] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Omphule77/networksecurity "HTTP/1.1 200 OK"
+[2026-04-21 20:39:32,200] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-04-21 20:39:32,202] 107 dagshub - INFO - Initialized MLflow to track repo "Omphule77/networksecurity"
+[2026-04-21 20:39:32,203] 107 dagshub - INFO - Repository Omphule77/networksecurity initialized!
+[2026-04-21 20:39:38,546] 34 root - INFO - Data ingestion started
+[2026-04-21 20:39:41,225] 72 root - INFO - Train test split done
+[2026-04-21 20:39:41,225] 73 root - INFO - Exited split_data_as_train_test method of DataIngestion class
+[2026-04-21 20:39:41,226] 77 root - INFO - Exporting train and test files
+[2026-04-21 20:39:41,303] 80 root - INFO - Exported train and test files
+[2026-04-21 20:39:41,304] 37 root - INFO - Data ingestion completed and artifact: DataIngestionArtifact(training_file_path='artifact\\04_21_2026_20_39_27\\data_ingestion\\train.csv', testing_file_path='artifact\\04_21_2026_20_39_27\\data_ingestion\\test.csv')
+[2026-04-21 20:39:41,304] 45 root - INFO - Data validation started
+[2026-04-21 20:39:41,390] 32 root - INFO - Expected number of columns: 2
+[2026-04-21 20:39:41,390] 33 root - INFO - Actual number of columns: 31
+[2026-04-21 20:39:41,390] 32 root - INFO - Expected number of columns: 2
+[2026-04-21 20:39:41,390] 33 root - INFO - Actual number of columns: 31
+[2026-04-21 20:39:41,485] 63 root - INFO - Drift report saved to artifact\04_21_2026_20_39_27\data_validation\drift_report\report.yaml
+[2026-04-21 20:39:41,559] 48 root - INFO - Data validation completed and artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='artifact\\04_21_2026_20_39_27\\data_validation\\validated\\train.csv', valid_test_file_path='artifact\\04_21_2026_20_39_27\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='artifact\\04_21_2026_20_39_27\\data_validation\\drift_report\\report.yaml')
+[2026-04-21 20:39:41,559] 56 root - INFO - Data transformation started
+[2026-04-21 20:39:41,560] 40 root - INFO - Enter the initiate_data_transformation method of DataTransformation class
+[2026-04-21 20:39:41,560] 42 root - INFO - Starting data transformation
+[2026-04-21 20:39:41,677] 44 root - INFO - Enter the save object method of utils
+[2026-04-21 20:39:41,682] 49 root - INFO - Exit the save object method of utils
+[2026-04-21 20:39:41,683] 44 root - INFO - Enter the save object method of utils
+[2026-04-21 20:39:41,690] 49 root - INFO - Exit the save object method of utils
+[2026-04-21 20:39:41,690] 77 root - INFO - Data transformation completed
+[2026-04-21 20:39:41,692] 59 root - INFO - Data transformation completed and artifact: DataTransformationArtifact(transformed_object_file_path='artifact\\04_21_2026_20_39_27\\data_transformation\\transformed_object\\preprocessor.pkl', transformed_train_file_path='artifact\\04_21_2026_20_39_27\\data_transformation\\transformed_data\\train.npy', transformed_test_file_path='artifact\\04_21_2026_20_39_27\\data_transformation\\transformed_data\\test.npy')
+[2026-04-21 20:39:41,692] 67 root - INFO - Model trainer started
+[2026-04-21 20:41:02,731] 86 root - INFO - Model report generated successfully
+[2026-04-21 20:41:56,960] 44 root - INFO - Enter the save object method of utils
+[2026-04-21 20:41:57,016] 49 root - INFO - Exit the save object method of utils
+[2026-04-21 20:41:57,016] 44 root - INFO - Enter the save object method of utils
+[2026-04-21 20:41:57,053] 49 root - INFO - Exit the save object method of utils
+[2026-04-21 20:41:57,053] 127 root - INFO - Model trainer artifact: ModelTrainerArtifact(trained_model_file_path='artifact\\04_21_2026_20_39_27\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9919240864122754, precision=0.9895266868076535, recall=0.9943331309451529), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.972507180960197, precision=0.9705159705159705, recall=0.9745065789473685))
+[2026-04-21 20:41:57,057] 70 root - INFO - Model trainer completed and artifact: ModelTrainerArtifact(trained_model_file_path='artifact\\04_21_2026_20_39_27\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9919240864122754, precision=0.9895266868076535, recall=0.9943331309451529), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.972507180960197, precision=0.9705159705159705, recall=0.9745065789473685))

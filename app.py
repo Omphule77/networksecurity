@@ -1,3 +1,4 @@
+from pandas.core.dtypes.common import classes
 import os
 import sys
 
@@ -12,6 +13,7 @@ import pymongo
 from networksecurity.logging.logger import logging
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.pipeline.training_pipeline import TrainingPipeline
+from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 
 from fastapi import FastAPI,Request,UploadFile,File
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,6 +29,9 @@ from networksecurity.constant.training_pipeline import DATA_INGESTION_COLLECTION
 
 database=client[DATA_INGESTION_DATABASE_NAME]
 collection=database[DATA_INGESTION_COLLECTION_NAME]
+
+from fastapi.templating import Jinja2Templates
+templates=Jinja2Templates(directory="./templates")
 
 app=FastAPI()
 origins=["*"]
@@ -49,6 +54,27 @@ async def train_route():
         training_pipeline=TrainingPipeline()
         training_pipeline.run_pipeline()
         return Response("Training pipeline completed successfully")
+    except Exception as e:
+        raise NetworkSecurityException(e,sys) from e
+
+@app.post("/predict")
+async def predict(request:Request,file:UploadFile=File(...)):
+    try:
+        df=pd.read_csv(file.file)
+        preprocessor=load_object("final_model/preprocessor.pkl")
+        final_model=load_object("final_model/model.pkl")
+
+        networkmodel=NetworkModel(preprocessor=preprocessor,model=final_model)
+        print(df.iloc[0])
+        y_pred=networkmodel.predict(df)
+        print(y_pred)
+        df['predicted_column']=y_pred
+        print(df['predicted_column'])
+        df.to_csv("prediction_outputs/output.csv")
+        table_html=df.to_html(classes="table table-striped")
+        return templates.TemplateResponse(
+            request=request, name="table.html", context={"table": table_html}
+        )
     except Exception as e:
         raise NetworkSecurityException(e,sys) from e
 

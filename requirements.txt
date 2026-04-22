@@ -12,4 +12,6 @@ dill
 fastapi
 uvicorn
 python-multipart
+awscli
+
 ##-e .
